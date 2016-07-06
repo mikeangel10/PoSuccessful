@@ -59,7 +59,6 @@ require(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojrouter',
       'corteDiario': {label: 'Corte diario'},
       'reportes': {label: 'Reportes'}
     });
-
     function RootViewModel() {
       var self = this;
       self.router = router;
