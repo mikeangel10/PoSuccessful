@@ -11,7 +11,8 @@ define(['ojs/ojcore', 'knockout'],
       
     function mainContentViewModel() {
         var self = this;
-        self.something = ko.observable("This section uses content from it's own 'home' ViewModel. The module is found in the /js/viewModules folder");
+        
+        self.something = ko.observable("En esta sección encontraremos el módulo principal operativo del negocio");
     }
     
    return new mainContentViewModel();
