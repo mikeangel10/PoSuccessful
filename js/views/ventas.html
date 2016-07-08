@@ -7,13 +7,46 @@
 <div id="form-container"  class="oj-form">
     
   <hr>
-  <label for="input">Buscar producto:</label>
-  <input id="input" data-bind="ojComponent: {
+  <label for="producto" class="oj-label-inline">Buscar producto:</label>
+  <input id="producto" data-bind="ojComponent: {
                 component: 'ojInputText', 
-                value:valueText,
-                required: isRequired}">
-    
-    
+                value:productoBuscar,
+                required: true,
+                help: {definition: 'Captura el producto a buscar', source:'https://www.facebook.com/ArticulosReligiososLaPurisima/'}}">
+  
+  <button id="button" class='oj-button-lg' data-bind="click: buttonClick, ojComponent: {component:'ojButton',
+    label: 'Buscar', display: 'icons', chroming: 'half',
+    icons: {start:'oj-fwk-icon-magnifier oj-fwk-icon'}}">
+  </button>
+  <label class="oj-label-inline" data-bind="text: clickedButton"></label>
+  
+  
+  
+   
+  
+  
+  <div class="oj-panel oj-panel-alt1 oj-margin demo-mypanel">
+      <h3 class="oj-header-border">Header</h3>
+      <p>Hello world!</p>
+      It's going great in JET land.
+      <div class="demo-flex-display">
+    <div class="oj-sm-odd-cols-12 oj-md-odd-cols-4 oj-flex-items-pad">       
+        <div class="oj-flex">
+          <div class="oj-flex-item">col 1</div>
+          <div class="oj-flex-item">col 2</div> 
+        </div>       
+        <div class="oj-flex">
+          <div class="oj-flex-item">col 1</div>
+          <div class="oj-flex-item">col 2</div> 
+        </div>       
+        <div class="oj-flex">
+          <div class="oj-flex-item">col 1</div>
+          <div class="oj-flex-item">col 2</div> 
+        </div> 
+      </div>
+  </div>  
+      
+    </div>
     
 </div>
 

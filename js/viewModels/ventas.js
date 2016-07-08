@@ -5,14 +5,18 @@
 /**
  * Main content module
  */
-define(['ojs/ojcore', 'knockout'],
+define(['ojs/ojcore', 'knockout', 'ojs/ojinputtext', 'ojs/ojbutton'],
   function(oj, ko) {
       //ko.applyBindings(new mainContentViewModel(),document.getElementById('form-container'));
       
     function mainContentViewModel() {
         var self = this;
-        
-        self.something = ko.observable("En esta sección encontraremos el módulo principal operativo del negocio");
+        self.productoBuscar=ko.observable("");
+        self.clickedButton = ko.observable("No clicked yet");
+        self.buttonClick = function(data, event){
+            self.clickedButton(document.getElementById('producto').value);
+            return true;
+        }
     }
     
    return new mainContentViewModel();
