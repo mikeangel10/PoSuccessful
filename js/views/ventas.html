@@ -26,29 +26,37 @@
   
   
   <div class="oj-panel oj-panel-alt1 oj-margin demo-mypanel">
-      <h3 class="oj-header-border">Header</h3>
-      <p>Hello world!</p>
-      It's going great in JET land.
-      <div class="demo-flex-display">
-    <div class="oj-sm-odd-cols-12 oj-md-odd-cols-4 oj-flex-items-pad">       
-        <div class="oj-flex">
-          <div class="oj-flex-item">col 1</div>
-          <div class="oj-flex-item">col 2</div> 
-        </div>       
-        <div class="oj-flex">
-          <div class="oj-flex-item">col 1</div>
-          <div class="oj-flex-item">col 2</div> 
-        </div>       
-        <div class="oj-flex">
-          <div class="oj-flex-item">col 1</div>
-          <div class="oj-flex-item">col 2</div> 
-        </div> 
-      </div>
-  </div>  
       
+      
+      
+   
+  <div class="demo-grid-sizes demo-flex-display">
+    <div class="oj-flex oj-flex-items-pad">
+      <div class="oj-sm-12 oj-md-6 oj-lg-6 oj-flex-item oj-panel-shadow-sm oj-panel-alt2">
+          <h3 class="oj-header-border">Productos</h3>
+          <table id="table" summary="Department List" aria-label="Departments Table"
+                data-bind="ojComponent: {component: 'ojTable', 
+                                         data: datasource, 
+                                         columnsDefault: {sortable: 'enabled'}, 
+                                         columns: [{headerText: 'Department Id', 
+                                                    field: 'DepartmentId'},
+                                                   {headerText: 'Department Name', 
+                                                    field: 'DepartmentName'},
+                                                   {headerText: 'Location Id', 
+                                                    field: 'LocationId'},
+                                                   {headerText: 'Manager Id', 
+                                                    field: 'ManagerId'}]}">
+         </table>
+      </div>
+      <div class="oj-sm-12 oj-md-6  oj-lg-6 oj-flex-item oj-panel-shadow-sm oj-panel-alt3">
+          <h3 class="oj-header-border">Nota de venta</h3>
+      </div>
     </div>
+  </div>
+  </div> 
+  
     
 </div>
 
 <br/>
-<div data-bind="text: something"></div>
+
