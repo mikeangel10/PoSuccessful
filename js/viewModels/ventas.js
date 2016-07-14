@@ -5,10 +5,10 @@
 /**
  * Main content module
  */
-define(['ojs/ojcore', 'knockout', 'ojs/ojinputtext', 'ojs/ojbutton'],
+define(['ojs/ojcore', 'knockout','jquery', 'ojs/ojknockout', 'ojs/ojinputtext', 
+'ojs/ojbutton',  'promise','ojs/ojdatagrid', 'ojs/ojarraydatagriddatasource'],
   function(oj, ko) {
-      //ko.applyBindings(new mainContentViewModel(),document.getElementById('form-container'));
-      
+    
     function mainContentViewModel() {
         var self = this;
         self.productoBuscar=ko.observable("");
@@ -17,23 +17,25 @@ define(['ojs/ojcore', 'knockout', 'ojs/ojinputtext', 'ojs/ojbutton'],
             self.clickedButton(document.getElementById('producto').value);
             return true;
         }
-        var deptArray = [{DepartmentId: 1001, DepartmentName: 'ADFPM 1001 neverending', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 556, DepartmentName: 'BB', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 10, DepartmentName: 'Administration', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 20, DepartmentName: 'Marketing', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 30, DepartmentName: 'Purchasing', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 40, DepartmentName: 'Human Resources1', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 50, DepartmentName: 'Administration2', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 60, DepartmentName: 'Marketing3', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 70, DepartmentName: 'Purchasing4', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 80, DepartmentName: 'Human Resources5', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 90, DepartmentName: 'Human Resources11', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 100, DepartmentName: 'Administration12', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 110, DepartmentName: 'Marketing13', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 120, DepartmentName: 'Purchasing14', LocationId: 200, ManagerId: 300},
-            {DepartmentId: 130, DepartmentName: 'Human Resources15', LocationId: 200, ManagerId: 300}];
-        self.datasource = new oj.ArrayTableDataSource(deptArray, {idAttribute: 'DepartmentId'});
+      self.dataSource = new oj.ArrayDataGridDataSource([
+        {id_Producto: 1001, productName: 'ADFPM 1001 neverending', precio: 200},
+        {id_Producto: 556, productName: 'BB', precio: 200},
+        {id_Producto: 10, productName: 'Administration', precio: 200},
+        {id_Producto: 20, productName: 'Marketing', precio: 200},
+        {id_Producto: 30, productName: 'Purchasing', precio: 200},
+        {id_Producto: 40, productName: 'Human Resources1', precio: 200},
+        {id_Producto: 50, productName: 'Administration2', precio: 200},
+        {id_Producto: 60, productName: 'Marketing3', precio: 200},
+        {id_Producto: 70, productName: 'Purchasing4', precio: 200},
+        {id_Producto: 80, productName: 'Human Resources5', precio: 200},
+        {id_Producto: 90, productName: 'Human Resources11', precio: 200},
+        {id_Producto: 100, productName: 'Administration12', precio: 200},
+        {id_Producto: 110, productName: 'Marketing13', precio: 200},
+        {id_Producto: 120, productName: 'Purchasing14', precio: 200},
+        {id_Producto: 130, productName: 'Human Resources15', precio: 200}], 
+        {rowHeader: 'id_Producto'}
+                    );
+        
     }
-    
-   return new mainContentViewModel();
+    return new mainContentViewModel();
 });
