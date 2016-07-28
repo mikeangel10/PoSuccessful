@@ -12,46 +12,9 @@ and open the template in the editor.
         
     </head>
     <body>
-        <label for="input" >input</label>
-        <input id="input" data-bind="ojComponent: {
-                component: 'ojInputText', 
-                value:valueText,
-                required: isRequired}">
-        <div id="div1">
-            <label for="dateTime">Default</label>
-            <input id="dateTime" data-bind="ojComponent: {component: 'ojInputDateTime', value: value}"/> 
-        </div>
-        <label for="combobox" >combobox</label>
-        <input id="combobox" list="browsers" 
-               data-bind="ojComponent: {component: 'ojCombobox'}"/>
-        <datalist id="browsers">
-            <option value="Internet Explorer">Internet Explorer</option>
-            <option value="Firefox">Firefox</option>
-            <option value="Chrome">Chrome</option>
-            <option value="Opera">Opera</option>
-            <option value="Safari">Safari</option>
-        </datalist>
-        <br/>
-        <button id= "button" data-bind="click: buttonClick, 
-                       ojComponent: { component: 'ojButton', label: 'A button element' }">
-        </button>
-        <p id="last" class="bold">ID of last button to be clicked: 
-            <span id="results" data-bind='text: clickedButton'></span>
-        </p>
-        <table id="table" summary="Department List" aria-label="Departments Table"
-                data-bind="ojComponent: {component: 'ojTable', 
-                                         data: datasource, 
-                                         columnsDefault: {sortable: 'enabled'}, 
-                                         columns: [{headerText: 'Department Id', 
-                                                    field: 'DepartmentId'},
-                                                   {headerText: 'Department Name', 
-                                                    field: 'DepartmentName'},
-                                                   {headerText: 'Location Id', 
-                                                    field: 'LocationId'},
-                                                   {headerText: 'Manager Id', 
-                                                    field: 'ManagerId'}]}">
-         </table>
+       
         
+       
         <div id="mainContainer">
                 <div class="oj-flex oj-flex-items-pad">
                     <div class="oj-flex-item oj-sm-12 oj-xl-6 oj-lg-9 oj-md-12"> <!-- demo-coldrop-B -->
