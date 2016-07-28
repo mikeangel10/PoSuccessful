@@ -12,10 +12,27 @@ and open the template in the editor.
         
     </head>
     <body>
-       
         
        
-        <div id="mainContainer">
+        <div id="mainContainer" class="oj-sm-12 oj-xl-12 oj-lg-12 oj-md-12">
+            <h2>Articulos(<span data-bind="text: seats().length"></span>)</h2>
+            <button data-bind="click: addSeat">Agregar artículo</button>
+            <table>
+                <thead><tr>
+                    <th>Passenger name</th><th>Meal</th><th>Surcharge</th><th></th>
+                </tr></thead>
+                <tbody data-bind="foreach: seats">
+                    <tr>
+                        <td><input data-bind="value: name" /></td>
+                        <td><select data-bind="options: $parent.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
+                        <td data-bind="text: formattedPrice"></td>
+                        <td><a href="#" data-bind="click: $parent.removeSeat">Borrar</a></td>
+                    </tr>    
+                </tbody>
+            </table>
+            <h3 data-bind="visible: totalSurcharge() > 0">
+                Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
+            </h3>
                 <div class="oj-flex oj-flex-items-pad">
                     <div class="oj-flex-item oj-sm-12 oj-xl-6 oj-lg-9 oj-md-12"> <!-- demo-coldrop-B -->
                         <div role="main" class="demo-page-content-area">
