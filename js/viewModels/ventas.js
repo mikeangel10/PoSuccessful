@@ -40,7 +40,9 @@ define(['ojs/ojcore', 'knockout','jquery', 'ojs/ojknockout', 'ojs/ojinputtext',
         {idProducto: 70, productoNotaVenta: 'Purchasing4', cantidad: 200, precio: 300, importe: 5},
         {idProducto: 130, productoNotaVenta: 'Human Resources15', cantidad: 200, precio: 300, importe: 5}];
     self.datosNotaVenta = new oj.ArrayTableDataSource(productosNotaVenta, {idAttribute: 'idProducto'});
-    
+    self.finalizarOnClick = function(data, event){
+        return true;
+    }
         
     }
     return new mainContentViewModel();

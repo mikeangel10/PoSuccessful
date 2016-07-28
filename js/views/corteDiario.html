@@ -2,12 +2,29 @@
  Copyright (c) 2014, 2016, Oracle and/or its affiliates.
  The Universal Permissive License (UPL), Version 1.0
  -->
-<h1>People Content</h1>
+<h1>Corte</h1>
 <div>
-  Content in this area will be the primary content for the People page. It will stay above the Complementary content as the viewport is made smaller.  
-  At the smallest view port size, it will be in between the Navigation content and the Complementary content.
-</div>
-<br/>
-<div>
-  To change the content of this section, you will make edits to the people.html file located in the /js/views folder.
+    <p>Fecha: <strong data-bind="text:fechaHoy"></strong></p>
+    <table id="table" summary="Department List" aria-label="Departments Table"
+       data-bind="ojComponent: {component: 'ojTable', 
+                                data: corteDia, 
+                                columnsDefault: {sortable: 'none'}, 
+                                columns: [{headerText: 'ID', 
+                                           field: 'DepartmentId', 
+                                           style: 'width: 10%'},
+                                          {headerText: 'Department Name', 
+                                           field: 'DepartmentName', 
+                                           style: 'width: 50%'},
+                                          {headerText: 'Loc Id', 
+                                           field: 'LocationId', 
+                                           style: 'width: 20%'},
+                                          {headerText: 'Mgr Id', 
+                                           field: 'ManagerId', 
+                                           style: 'width: 20%'}], 
+                                rootAttributes: {'style':'width: 100%; height:100%;'}}">
+    </table>
+    <button id= "button"
+            data-bind="click: imprimirCorte, 
+                       ojComponent: { component: 'ojButton', label: 'Imprimir' }">
+    </button>
 </div>
