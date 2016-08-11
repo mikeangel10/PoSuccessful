@@ -1,4 +1,5 @@
-define(['ojs/ojcore', 'knockout','jquery', 'ojs/ojknockout', 'promise', 'ojs/ojtable', 'ojs/ojarraytabledatasource'],
+define(['ojs/ojcore', 'knockout','jquery', 'ojs/ojknockout', 'promise', 'ojs/ojtable', 'ojs/ojpagingcontrol', 
+    'ojs/ojpagingtabledatasource', 'ojs/ojarraytabledatasource'],
 function(oj, ko) {
     function AppViewModel() {
         var self = this;
@@ -19,7 +20,10 @@ function(oj, ko) {
             {DepartmentId: 110, DepartmentName: 'Marketing13', LocationId: 200, ManagerId: 300},
             {DepartmentId: 120, DepartmentName: 'Purchasing14', LocationId: 200, ManagerId: 300},
             {DepartmentId: 130, DepartmentName: 'Human Resources15', LocationId: 200, ManagerId: 300}];
-        self.corteDia = new oj.ArrayTableDataSource(deptArray, {idAttribute: 'DepartmentId'});
+        self.corteDia = new oj.PagingTableDataSource(new oj.ArrayTableDataSource(deptArray,
+        {idAttribute: 'DepartmentId'}));
+        
+//        self.corteDia = new oj.ArrayTableDataSource(deptArray, {idAttribute: 'DepartmentId'});
         self.imprimirCorte = function(data, event){
             return true;
     }

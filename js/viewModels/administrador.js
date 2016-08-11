@@ -1,36 +1,64 @@
-define(['ojs/ojcore', 'knockout','ojs/ojselectcombobox','ojs/ojknockout', 'promise','ojs/ojchart'],
+define(['ojs/ojcore', 'knockout','ojs/ojselectcombobox','ojs/ojknockout', 'promise','ojs/ojchart','ojs/ojinputtext',
+    'ojs/ojbutton'],
   function(oj, ko) {
-   // Class to represent a row in the seat reservations grid
-    function SeatReservation(name, initialMeal) {
+   // Class to represent a row in the producto reservations grid
+    function ProductoReservation(initialArticulo) {
         var self = this;
-        self.name = name;
-        self.meal = ko.observable(initialMeal);
-        self.formattedPrice = ko.computed(function() {
-            var price = self.meal().price;
-            return price ? "$" + price.toFixed(2) : "None";        
+        self.articulo = ko.observable(initialArticulo);
+        self.idProducto=self.articulo().idProducto;
+        self.productoTabla = self.articulo().productoTabla;
+        self.cantidad = self.articulo().cantidad;
+        self.precioCompra = ko.computed(function() {
+            var price = self.articulo().precioCompra;
+            return price ? "$" + price.toFixed(2) : "0";        
+        });
+        self.precioVenta = ko.computed(function() {
+            var price = self.articulo().precioVenta;
+            return price ? "$" + price.toFixed(2) : "0";        
         });
     }
    function mainContentViewModel() {
     var self = this;
+    self.producto="";
+    self.precioCompra="";
+    self.precioVenta="";
+    self.cantidad="";
+    self.productoBuscar="";
+    self.buscarProducto = function(data, event){
+           self.clickedButton(document.getElementById('productoBuscar').value);
+           return true;
+    };
     // Non-editable catalog data - would come from the server
-    self.availableMeals = [
-        { mealName: "Standard (sandwich)", price: 0 },
-        { mealName: "Premium (lobster)", price: 34.95 },
-        { mealName: "Ultimate (whole zebra)", price: 290 }]; 
+    self.availableProducts = [
+        { idProducto:1,productoTabla:"Devocionarios", precioCompra: 12.5, precioVenta:0,cantidad:2 },
+        { idProducto:2,productoTabla:"Cruces", precioCompra: 13.6, precioVenta:34.95,cantidad:3},
+        { idProducto:3,productoTabla:"Oraciones", precioCompra: 22.7, precioVenta:290,cantidad:4}]; 
     // Editable data
-    self.seats = ko.observableArray([
-        new SeatReservation("Steve", self.availableMeals[0]),
-        new SeatReservation("Bert", self.availableMeals[0])
+    self.productos = ko.observableArray([
+        new ProductoReservation(self.availableProducts[0]),
+        new ProductoReservation(self.availableProducts[1]),
+        new ProductoReservation(self.availableProducts[2])
     ]);
     // Operations
-    self.addSeat = function() {
-        self.seats.push(new SeatReservation("mike", self.availableMeals[0]));
-    }
-    self.removeSeat = function(seat) { self.seats.remove(seat) }
-    self.totalSurcharge = ko.computed(function() {
+    self.addProducto = function() {
+        self.productos.push(new ProductoReservation({idProducto:0,productoTabla:self.producto, precioCompra: Number(self.precioCompra), precioVenta:Number(self.precioVenta),cantidad:Number(self.cantidad)}));
+        alert("Added");
+        document.getElementById('producto').value="";
+        document.getElementById('precioCompra').value="";
+        document.getElementById('precioVenta').value="";
+        document.getElementById('cantidad').value="";
+    };
+    self.removeProducto = function(producto) { self.productos.remove(producto) };
+    self.totalCompra = ko.computed(function() {
         var total = 0;
-        for (var i = 0; i < self.seats().length; i++)
-            total += self.seats()[i].meal().price;
+        for (var i = 0; i < self.productos().length; i++)
+            total += self.productos()[i].articulo().precioCompra;
+        return total;
+    });
+    self.totalVenta = ko.computed(function() {
+        var total = 0;
+        for (var i = 0; i < self.productos().length; i++)
+            total += self.productos()[i].articulo().precioVenta;
         return total;
     });
     

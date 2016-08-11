@@ -12,26 +12,84 @@ and open the template in the editor.
         
     </head>
     <body>
-        
-       
         <div id="mainContainer" class="oj-sm-12 oj-xl-12 oj-lg-12 oj-md-12">
-            <h2>Articulos(<span data-bind="text: seats().length"></span>)</h2>
-            <button data-bind="click: addSeat">Agregar artículo</button>
-            <table>
-                <thead><tr>
-                    <th>Passenger name</th><th>Meal</th><th>Surcharge</th><th></th>
-                </tr></thead>
-                <tbody data-bind="foreach: seats">
-                    <tr>
-                        <td><input data-bind="value: name" /></td>
-                        <td><select data-bind="options: $parent.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
-                        <td data-bind="text: formattedPrice"></td>
-                        <td><a href="#" data-bind="click: $parent.removeSeat">Borrar</a></td>
-                    </tr>    
-                </tbody>
-            </table>
-            <h3 data-bind="visible: totalSurcharge() > 0">
-                Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
+            <h2>Articulos(<span data-bind="text: productos().length"></span>)</h2>
+            <div id="form-container">
+                <div class="oj-form">  
+                    <input id="producto"  placeholder="Producto" data-bind="ojComponent: {component: 'ojInputText', 
+                                                                        value:producto,
+                                                                        required: true, 
+                                                                        rootAttributes: {
+                                                                            style:'max-width:20em'} 
+                                                                        }">
+                    <input id="precioCompra" placeholder="Precio compra" data-bind="ojComponent: {component: 'ojInputText', 
+                                                                        value:precioCompra,
+                                                                        required:true,
+                                                                        rootAttributes: {
+                                                                            style:'max-width:10em'} 
+                                                                        }">
+                    <input id="precioVenta" placeholder="Precio venta" data-bind="ojComponent: {component: 'ojInputText', 
+                                                                        value:precioVenta,
+                                                                        required:true,
+                                                                        rootAttributes: {
+                                                                            style:'max-width:10em'} 
+                                                                        }">
+                    <input id="cantidad" placeholder="Cantidad" data-bind="ojComponent: {component: 'ojInputText', 
+                                                                        value:cantidad,
+                                                                        required:true,
+                                                                        rootAttributes: {
+                                                                            style:'max-width:10em'} 
+                                                                        }">
+                    <button data-bind="click: addProducto, 
+                       ojComponent: { component: 'ojButton', label: 'Agregar artículo' }"></button>
+                </div>
+            </div>
+            <label for="productoBuscar" class="oj-label-inline">Buscar producto:</label>
+             <input id="productoBuscar" placeholder="Producto a buscar" data-bind="ojComponent: {
+                component: 'ojInputText', 
+                value:productoBuscar,
+                required: true,
+                help: {definition: 'Captura el producto a buscar', source:'https://www.facebook.com/ArticulosReligiososLaPurisima/'}}"/>
+             <button id="button" class='oj-button-lg' data-bind="click: buscarProducto, ojComponent: {component:'ojButton',
+                label: 'Buscar', display: 'icons', chroming: 'half',
+                icons: {start:'oj-fwk-icon-magnifier oj-fwk-icon'}}">
+             </button>
+             
+                <table>
+                    <thead><tr>
+                        <th>Producto</th><th>Precio compra</th><th>Precio venta</th><th>Existencia</th><th></th>
+                    </tr></thead>
+                    <tbody data-bind="foreach: productos">
+                        <tr>
+                            <td><input data-bind="value: idProducto, ojComponent: {component: 'ojInputText', 
+                                                                            rootAttributes: {
+                                                                                style:'max-width:5em'} 
+                                                                            }" /></td>
+                            <td><input data-bind="value: productoTabla, ojComponent: {component: 'ojInputText', 
+                                                                            rootAttributes: {
+                                                                                style:'max-width:25em'} 
+                                                                            }" /></td>
+                            <td><input data-bind="value: precioCompra, ojComponent: {component: 'ojInputText', 
+                                                                            rootAttributes: {
+                                                                                style:'max-width:10em'} 
+                                                                            }" /></td>
+                            <td><input data-bind="value: precioVenta, ojComponent: {component: 'ojInputText', 
+                                                                            rootAttributes: {
+                                                                                style:'max-width:10em'} 
+                                                                            }" /></td>
+                            <td><input data-bind="value: cantidad, ojComponent: {component: 'ojInputText', 
+                                                                            rootAttributes: {
+                                                                                style:'max-width:8em'} 
+                                                                            }" /></td>
+                            <td><a href="#" data-bind="click: $parent.removeProducto">Borrar</a></td>
+                        </tr>    
+                    </tbody>
+                </table>
+            <h3 data-bind="visible: totalCompra() > 0">
+                Total compra: $<span data-bind="text: totalCompra().toFixed(2)"></span>
+            </h3>
+            <h3 data-bind="visible: totalVenta() > 0">
+                Total venta: $<span data-bind="text: totalVenta().toFixed(2)"></span>
             </h3>
                 <div class="oj-flex oj-flex-items-pad">
                     <div class="oj-flex-item oj-sm-12 oj-xl-6 oj-lg-9 oj-md-12"> <!-- demo-coldrop-B -->
